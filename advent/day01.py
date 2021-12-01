@@ -15,7 +15,7 @@ def get_n_increases_sum(inputs: List[int]) -> int:
     """
     Returns the number of times a sliding window sum
     of length 3 of elements of inputs was larger
-    than the previous sliding window sum 
+    than the previous sliding window sum
     """
     return sum([((n_4 + n_3 + n_2) > (n_3 + n_2 + n_1))
                for n_4, n_3, n_2, n_1
