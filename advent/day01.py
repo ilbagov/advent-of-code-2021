@@ -8,10 +8,7 @@ def get_n_increases(inputs: List[int]) -> int:
     Returns the number of times a value in inputs
     was larger than its predecessor
     """
-
-    deltas = [x - y for x, y in zip(inputs[1:], inputs)]
-
-    return sum([True for x in deltas if x > 0])
+    return sum([((n_2 - n_1) > 0) for n_2, n_1 in zip(inputs[1:], inputs)])
 
 
 def get_n_increases_sum(inputs: List[int]) -> int:
@@ -19,12 +16,9 @@ def get_n_increases_sum(inputs: List[int]) -> int:
     Returns the number of times a value in inputs
     was larger than its predecessor
     """
-
-    deltas_sums = [(inputs[i] + inputs[i-1] + inputs[i-2]) -
-                   (inputs[i-1] + inputs[i-2] + inputs[i-3])
-                   for i in range(3, len(inputs))]
-
-    return sum([True for x in deltas_sums if x > 0])
+    return sum([((n_4 + n_3 + n_2) > (n_3 + n_2 + n_1))
+               for n_4, n_3, n_2, n_1
+               in zip(inputs[3:], inputs[2:], inputs[1:], inputs)])
 
 
 assert get_n_increases(TETST_INPUTS) == 7
