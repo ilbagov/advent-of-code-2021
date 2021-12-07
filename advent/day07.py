@@ -26,13 +26,19 @@ def mean(xs: List[int]) -> float:
 
 def optimal_fuel_sum(positions: List[int], simple=True) -> int:
     """
-    Calculates the optimal end postion of the crabs
+    Calculates the optimal fuel needed
+    to align the crabs horizontally
     """
     if simple:
+        # the minimum of a sum of absolute differences
+        # is the median
         med = median(positions)
         fuel = sum(abs(x-med) for x in positions)
     else:
+        # the minimum of the fuel in the second case
+        # is found at the mean of the position
         opt_point = mean(positions)
+        # ceil/floor needed because the coordinates are integers
         fuel = min(0.5*sum(abs(x-ceil(opt_point))**2 + abs(x-ceil(opt_point))
                    for x in positions),
                    0.5*sum(abs(x-floor(opt_point))**2 + abs(x-floor(opt_point))
